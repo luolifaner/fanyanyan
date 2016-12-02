@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mzd.xmlsql.Post">
+    <select id="login" parameterType="org.lanqiao.domain.Reply" resultType="hashmap">
+		<![CDATA[
+			select * from reply where password=#{password} and rauther=#{rauther}
+		]]>
+		
+	</select>
+
+	<select id="selectPost" resultType="hashmap">
+	<![CDATA[
+	select * from post
+	]]>
+	</select>
+	
+	
+	<select id="getRow" parameterType="int" resultType="org.lanqiao.domain.Post">
+		<![CDATA[
+			select * from post where id=#{id}
+		]]>	
+		
+	</select>
+	<select id="selectMore" parameterType="int" resultType="hashmap">
+		<![CDATA[
+			select p.title,p.auther,p.regdate,p.content,r.rauther,r.rcontent,r.rregdate,r.id,r.reply_post_id from post as p left join reply as r on p.id=r.reply_post_id where p.id=#{id}	
+		]]>
+		
+	</select>
+	
+	
+	
+</mapper>
+
